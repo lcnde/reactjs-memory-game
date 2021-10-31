@@ -1,3 +1,24 @@
 h1 {
   font-size: 40px;
 }
+
+.cards-container {
+  display: grid;
+  justify-content: center;
+
+  .cards {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1700px;
+    gap: 15px;
+    box-sizing: border-box;
+  
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover; //forces images to keep their aspect ratio
+                         //and cut the excess part that dont fit
+    }
+  }
+}

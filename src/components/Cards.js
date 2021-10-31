@@ -21,6 +21,11 @@ function Cards() {
     {url: 'images/Toyota-2000GT.jpg', name: 'Toyota', clicked: false}
   ]
 
+  // This maps thru the images array and displays the images one by one
+  let imageGrid = images.map((img) =>
+    <img src={img.url} alt="Classic car" /> 
+  )
+
   function shuffle(array) {
     let currentIndex = array.length, randomIndex;
 
@@ -37,7 +42,9 @@ function Cards() {
 
   return (
     <div className="cards-container">
-      <img src={images[0].url} alt="car" />
+      <div className="cards">
+        {imageGrid}
+      </div>
     </div>
   )
 }

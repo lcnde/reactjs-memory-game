@@ -1,5 +1,13 @@
 .App {
   text-align: center;
+  max-width: 100vw;
+  overflow: hidden;
+  background-image: url("/assets/wallpaper.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5) //adds a shadow overlay over the background
+  
 }
 
 .App-logo {
