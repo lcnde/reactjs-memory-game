@@ -20,8 +20,20 @@ h1 {
       object-fit: cover; //forces images to keep their aspect ratio
                          //and cut the excess part that dont fit
     }
-    .single-card {
+    .single-card-container {
       border: 3px solid yellow;
+      display: grid;
+      justify-items: center;
+      position: relative;
+
+      h2 {
+        position: absolute;
+        top: 10px;
+        font-size: 30px;
+        color: white;
+        background-color: black;
+        padding: 5px;
+      }
     }
   }
 }
