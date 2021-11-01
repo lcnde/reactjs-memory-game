@@ -20,5 +20,8 @@ h1 {
       object-fit: cover; //forces images to keep their aspect ratio
                          //and cut the excess part that dont fit
     }
+    .single-card {
+      border: 3px solid yellow;
+    }
   }
 }

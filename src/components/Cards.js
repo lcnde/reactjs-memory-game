@@ -23,7 +23,7 @@ function Cards() {
 
   // This maps thru the images array and displays the images one by one
   let imageGrid = images.map((img) =>
-    <img src={img.url} alt="Classic car" /> 
+    <img src={img.url} alt="Classic car" className="single-card" /> 
   )
 
   function shuffle(array) {
