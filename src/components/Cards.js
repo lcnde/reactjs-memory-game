@@ -1,33 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles/cards.scss';
+import uniqid from "uniqid";
 
 function Cards() {
-
-  let images = [
-    {url: 'images/969-Maserati-Ghibli-47.jpg', name: 'Maserati', clicked: false},
-    {url: 'images/1961-Jaguar-E-Type.jpg', name: 'Jaguar', clicked: false},
-    {url: 'images/1962-Ferrari-250.jpg', name: 'Ferrari 250', clicked: false},
-    {url: 'images/1963-Aston-Martin-DB5.jpg', name: 'Aston Martin', clicked: false},
-    {url: 'images/1963-Corvette-Sting-Ray.jpg', name: 'Corvette', clicked: false},
-    {url: 'images/1966-Alfa-Romeo-Spider-Duetto.jpg', name: 'Alfa-Romeo', clicked: false},
-    {url: 'images/1966-Lamborghini-Miura.jpg', name: 'Lamborghini', clicked: false},
-    {url: 'images/1966-Shelby-Cobra-427.jpg', name: 'Shelby', clicked: false},
-    {url: 'images/1969-Boss-429-Mustang.jpg', name: 'Boss', clicked: false},
-    {url: 'images/1969-Chevrolet-Camaro.jpg', name: 'Chevrolet', clicked: false},
-    {url: 'images/1969-Dodge-Charger-2.jpg', name: 'Dodge', clicked: false},
-    {url: 'images/1969-Ferrari-Dino-246-GT.jpg', name: 'Ferrari Dino', clicked: false},
-    {url: 'images/1970-Datsun-240Z.jpg', name: 'Datsun', clicked: false},
-    {url: 'images/Mercedes-300SL-Gullwing.jpg', name: 'Mercedes', clicked: false},
-    {url: 'images/Toyota-2000GT.jpg', name: 'Toyota', clicked: false}
-  ]
-
-  // This maps thru the images array and displays the images one by one
-  let imageGrid = images.map((img) =>
-    <div className="single-card-container">
-      <img src={img.url} alt="Classic car" className="single-card" />
-      <h2>{img.name}</h2>
-    </div>
-  )
+  const [cars, setCars] = useState([
+    {url: 'images/969-Maserati-Ghibli-47.jpg', name: 'Maserati', clicked: false, id: uniqid()},
+    {url: 'images/1961-Jaguar-E-Type.jpg', name: 'Jaguar', clicked: false, id: uniqid()},
+    {url: 'images/1962-Ferrari-250.jpg', name: 'Ferrari 250', clicked: false, id: uniqid()},
+    {url: 'images/1963-Aston-Martin-DB5.jpg', name: 'Aston Martin', clicked: false, id: uniqid()},
+    {url: 'images/1963-Corvette-Sting-Ray.jpg', name: 'Corvette', clicked: false, id: uniqid()},
+    {url: 'images/1966-Alfa-Romeo-Spider-Duetto.jpg', name: 'Alfa-Romeo', clicked: false, id: uniqid()},
+    {url: 'images/1966-Lamborghini-Miura.jpg', name: 'Lamborghini', clicked: false, id: uniqid()},
+    {url: 'images/1966-Shelby-Cobra-427.jpg', name: 'Shelby', clicked: false, id: uniqid()},
+    {url: 'images/1969-Boss-429-Mustang.jpg', name: 'Boss', clicked: false, id: uniqid()},
+    {url: 'images/1969-Chevrolet-Camaro.jpg', name: 'Chevrolet', clicked: false, id: uniqid()},
+    {url: 'images/1969-Dodge-Charger-2.jpg', name: 'Dodge', clicked: false, id: uniqid()},
+    {url: 'images/1969-Ferrari-Dino-246-GT.jpg', name: 'Ferrari Dino', clicked: false, id: uniqid()},
+    {url: 'images/1970-Datsun-240Z.jpg', name: 'Datsun', clicked: false, id: uniqid()},
+    {url: 'images/Mercedes-300SL-Gullwing.jpg', name: 'Mercedes', clicked: false, id: uniqid()},
+    {url: 'images/Toyota-2000GT.jpg', name: 'Toyota', clicked: false, id: uniqid()}
+  ])
+  const [updater, setUpdater] = useState(1)
 
   function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -43,10 +36,32 @@ function Cards() {
     }
   }
 
+  function shuffleState() {
+    let newState = cars
+    shuffle(newState)
+    setCars(newState)
+    console.log(cars)
+    setUpdater(updater+1)
+  }
+
+  function testState() {
+    console.log(cars)
+  }
+  function changeState() {
+    setCars('idontknow')
+  }
+
   return (
     <div className="cards-container">
       <div className="cards">
-        {imageGrid}
+        {
+          cars.map((img) =>
+          <div className="single-card-container" onClick={() => shuffleState()}>
+              <img key={img.id} src={img.url} alt="Classic car" className="single-card" />
+              <h2>{img.name}</h2>
+            </div>
+          )
+        }
       </div>
     </div>
   )
