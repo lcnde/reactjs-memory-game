@@ -35,13 +35,24 @@ function Cards() {
         array[randomIndex], array[currentIndex]];
     }
   }
-
+  function winLoseHandle(img) {
+    if (img.clicked === false) {
+      img.clicked = true
+    } else {
+      alert("You already clicked this image")
+    }
+  }
   function shuffleState() {
     let newState = cars
     shuffle(newState)
     setCars(newState)
     console.log(cars)
     setUpdater(updater+1)
+  }
+
+  function imageClickHandler(img) {
+    winLoseHandle(img)
+    shuffleState()
   }
 
   function testState() {
@@ -56,7 +67,7 @@ function Cards() {
       <div className="cards">
         {
           cars.map((img) =>
-          <div className="single-card-container" onClick={() => shuffleState()}>
+          <div className="single-card-container" onClick={() => imageClickHandler(img)}>
               <img key={img.id} src={img.url} alt="Classic car" className="single-card" />
               <h2>{img.name}</h2>
             </div>
