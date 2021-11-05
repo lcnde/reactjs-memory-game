@@ -24,8 +24,8 @@ function App() {
     {url: 'images/Toyota-2000GT.jpg', name: 'Toyota', clicked: false, id: uniqid()}
   ])
   const [timer, setTimer] = useState(5)
+  const [originalTimer, setOriginalTimer] = useState(timer)
 
-  let originalTimer = timer
 
   function resetGame() {
     setTimer(originalTimer)
