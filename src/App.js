@@ -25,9 +25,26 @@ function App() {
   ])
   const [timer, setTimer] = useState(5)
 
+  let originalTimer = timer
+
+  function resetGame() {
+    setTimer(originalTimer)
+    for (var i=0; i < cars.length; i++) {
+      cars[i].clicked = false
+    }
+  }
+
   const handleTimer = () => {
-    setInterval(() => {
-      setTimer(prevTimer => prevTimer - 1);
+    let helper = timer
+    var timerInterval = setInterval(() => {
+      helper -= 1
+      setTimer(helper)
+      console.log(timer)
+      if (helper === 0) {
+        alert('You have lost')
+        resetGame()
+        clearInterval(timerInterval)
+      }
     }, 1000)
   }
 

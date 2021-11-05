@@ -36,7 +36,6 @@ function Cards(props) {
     winLoseHandle(img)
     shuffleState()
     props.handleTimer()
-    console.log(props.timer)
   }
 
   return (
