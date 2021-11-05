@@ -35,13 +35,8 @@ function Cards(props) {
   function imageClickHandler(img) {
     winLoseHandle(img)
     shuffleState()
-  }
-
-  function testState() {
-    console.log(props.cars)
-  }
-  function changeState() {
-    props.setCars('idontknow')
+    props.handleTimer()
+    console.log(props.timer)
   }
 
   return (

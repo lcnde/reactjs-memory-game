@@ -23,13 +23,24 @@ function App() {
     {url: 'images/Mercedes-300SL-Gullwing.jpg', name: 'Mercedes', clicked: false, id: uniqid()},
     {url: 'images/Toyota-2000GT.jpg', name: 'Toyota', clicked: false, id: uniqid()}
   ])
+  const [timer, setTimer] = useState(5)
+
+  const handleTimer = () => {
+    setInterval(() => {
+      setTimer(prevTimer => prevTimer - 1);
+    }, 1000)
+  }
 
   return (
     <div className="App">
-      <Header />
+      <Header 
+        timer={timer}
+        setTimer={setTimer}
+      />
       <Cards 
         cars={cars} 
         setCars={setCars}
+        handleTimer={handleTimer}
       />
     </div>
   );
