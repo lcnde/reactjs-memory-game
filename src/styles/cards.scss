@@ -5,6 +5,7 @@ h1 {
 .cards-container {
   display: grid;
   justify-content: center;
+  height: min-content;
 
   .cards {
     display: grid;
@@ -16,7 +17,7 @@ h1 {
   
     img {
       width: 100%;
-      height: 250px;
+      height: 230px;
       object-fit: cover; //forces images to keep their aspect ratio
                          //and cut the excess part that dont fit
     }

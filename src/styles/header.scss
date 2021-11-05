@@ -1,0 +1,24 @@
+.header-container {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: min-content;
+  
+  .title-container {
+    text-align: left;
+
+    h1 {
+      font-size: 70px;
+    }
+    h2 {
+      font-size: 30px;
+    }
+  }
+
+  .timer {
+    font-size: 70px;
+    display: grid;
+    align-items: center;
+    text-align: end;
+  }
+}
