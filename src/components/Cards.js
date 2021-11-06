@@ -16,13 +16,7 @@ function Cards(props) {
         array[randomIndex], array[currentIndex]];
     }
   }
-  function winLoseHandle(img) {
-    if (img.clicked === false) {
-      img.clicked = true
-    } else {
-      alert("You already clicked this image, you have lost")
-    }
-  }
+
   function shuffleState() {
     let newState = props.cars
     shuffle(newState)
@@ -32,10 +26,9 @@ function Cards(props) {
   }
 
   function imageClickHandler(img) {
-    winLoseHandle(img)
     shuffleState()
     props.setGameStarted(true)
-    props.handleTimer()
+    props.handleTimer(img)
     console.log(props.gameStarted)
   }
 

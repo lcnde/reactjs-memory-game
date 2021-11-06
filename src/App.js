@@ -28,7 +28,8 @@ function App() {
   const [gameStarted, setGameStarted] = useState(false)
   const [updater, setUpdater] = useState(1)
 
-let helper
+  let helper
+  let timerInterval
 
   function resetGame() {
     for (var i=0; i < cars.length; i++) {
@@ -42,13 +43,14 @@ let helper
     for (var i=0; i<highestTimeout; i++) {
       clearInterval(i);
     }
+    clearInterval(timerInterval)
     setTimer(originalTimer);
   }
 
-  const handleTimer = () => {
+  const handleTimer = (img) => {
     resetTimer();
     helper = originalTimer
-    var timerInterval = setInterval(() => {
+    timerInterval = setInterval(() => {
       helper -= 1
       setTimer(helper)
       console.log(helper)
@@ -58,6 +60,18 @@ let helper
         clearInterval(timerInterval)
       }
     }, 1000)
+    
+    if (img.clicked === false) {
+      img.clicked = true
+    } else {
+      alert("You already clicked this image, you have lost")
+      resetGame()
+      clearInterval(timerInterval)
+    }
+  }
+
+  function winLoseHandle(img) {
+
   }
 
   return (
@@ -74,6 +88,7 @@ let helper
         setGameStarted={setGameStarted}
         updater={updater}
         setUpdater={setUpdater}
+        winLoseHandle={winLoseHandle}
       />
     </div>
   );
