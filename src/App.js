@@ -82,6 +82,7 @@ function App() {
     helper = originalTimer
     if (remaining === 1) {
       alert('Congratulations! You have won!')
+      setWin(prevWin => prevWin + 1)
       resetGame()
     } else {
 
