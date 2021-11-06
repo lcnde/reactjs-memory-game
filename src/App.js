@@ -31,6 +31,7 @@ function App() {
   let helper
   let timerInterval
 
+  // resets the game and "clicked" attributes on images
   function resetGame() {
     for (var i=0; i < cars.length; i++) {
       cars[i].clicked = false
@@ -38,6 +39,7 @@ function App() {
     setGameStarted(false);
     resetTimer()
   }
+  // resets all timers
   function resetTimer() {
     var highestTimeout = setInterval(";")
     for (var i=0; i<highestTimeout; i++) {
@@ -48,6 +50,7 @@ function App() {
   }
 
   const handleTimer = (img) => {
+    // when timer is up you lose
     resetTimer();
     helper = originalTimer
     timerInterval = setInterval(() => {
@@ -60,7 +63,8 @@ function App() {
         clearInterval(timerInterval)
       }
     }, 1000)
-    
+
+    // clicking twice on the same image makes you lose
     if (img.clicked === false) {
       img.clicked = true
     } else {
@@ -70,9 +74,7 @@ function App() {
     }
   }
 
-  function winLoseHandle(img) {
 
-  }
 
   return (
     <div className="App">
@@ -88,7 +90,6 @@ function App() {
         setGameStarted={setGameStarted}
         updater={updater}
         setUpdater={setUpdater}
-        winLoseHandle={winLoseHandle}
       />
     </div>
   );
