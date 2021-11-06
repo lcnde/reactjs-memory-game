@@ -29,6 +29,7 @@ function Cards(props) {
     shuffleState()
     props.setGameStarted(true)
     props.handleTimer(img)
+    props.handleStats(img)
     console.log(props.gameStarted)
   }
 

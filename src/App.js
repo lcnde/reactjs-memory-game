@@ -4,6 +4,7 @@ import './styles/App.scss';
 import './styles/cssReset.scss';
 import Cards from './components/Cards.js';
 import Header from './components/Header.js';
+import Stats from './components/Stats.js';
 
 function App() {
   const [cars, setCars] = useState([
@@ -27,9 +28,34 @@ function App() {
   const [originalTimer, setOriginalTimer] = useState(timer)
   const [gameStarted, setGameStarted] = useState(false)
   const [updater, setUpdater] = useState(1)
+  const [win, setWin] = useState(0)
+  const [lose, setLose] = useState(0)
+  const [score, setScore] = useState(1)
+  const [remaining, setRemaining] = useState(15)
+  const [originalRemaining, setOriginalRemaining] = useState(15)
+  const [highScore, setHighScore] = useState(0)
 
   let helper
   let timerInterval
+
+  function handleStats(img) {
+    //prevents score from adding 1 when it clicks an image that makes you lose the game
+    if (img.clicked === true) {
+      setScore(prevScore => prevScore + 1)
+      if (score>highScore) {
+        setHighScore(score)
+      }
+      setRemaining(prevRemaining => prevRemaining - 1)
+    }
+  }
+  function resetStats() {
+    setScore(1)
+    setRemaining(originalRemaining)
+  }
+  function handleLose() {
+    setLose(prevLose => prevLose + 1)
+  }
+
 
   // resets the game and "clicked" attributes on images
   function resetGame() {
@@ -38,6 +64,7 @@ function App() {
     };
     setGameStarted(false);
     resetTimer()
+    resetStats()
   }
   // resets all timers
   function resetTimer() {
@@ -53,24 +80,32 @@ function App() {
     // when timer is up you lose
     resetTimer();
     helper = originalTimer
-    timerInterval = setInterval(() => {
-      helper -= 1
-      setTimer(helper)
-      console.log(helper)
-      if (helper === 0) {
-        alert('Time is up! You have lost')
+    if (remaining === 1) {
+      alert('Congratulations! You have won!')
+      resetGame()
+    } else {
+
+      timerInterval = setInterval(() => {
+        helper -= 1
+        setTimer(helper)
+        console.log(helper)
+        if (helper === 0) {
+          alert('Time is up! You have lost')
+          handleLose()
+          resetGame()
+          clearInterval(timerInterval)
+        }
+      }, 1000)
+      
+      // clicking twice on the same image makes you lose
+      if (img.clicked === false) {
+        img.clicked = true
+      } else {
+        alert("You already clicked this image, you have lost")
+        handleLose()
         resetGame()
         clearInterval(timerInterval)
       }
-    }, 1000)
-
-    // clicking twice on the same image makes you lose
-    if (img.clicked === false) {
-      img.clicked = true
-    } else {
-      alert("You already clicked this image, you have lost")
-      resetGame()
-      clearInterval(timerInterval)
     }
   }
 
@@ -90,6 +125,14 @@ function App() {
         setGameStarted={setGameStarted}
         updater={updater}
         setUpdater={setUpdater}
+        handleStats={handleStats}
+      />
+      <Stats 
+        win={win}
+        lose={lose}
+        score={score}
+        remaining={remaining}
+        highScore={highScore}
       />
     </div>
   );
