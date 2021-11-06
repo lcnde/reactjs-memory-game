@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import '../styles/cards.scss';
 
 function Cards(props) {
-  const [updater, setUpdater] = useState(1)
 
   function shuffle(array) {
     let currentIndex = array.length, randomIndex;
@@ -21,7 +20,7 @@ function Cards(props) {
     if (img.clicked === false) {
       img.clicked = true
     } else {
-      alert("You already clicked this image")
+      alert("You already clicked this image, you have lost")
     }
   }
   function shuffleState() {
@@ -29,13 +28,15 @@ function Cards(props) {
     shuffle(newState)
     props.setCars(newState)
     console.log(props.cars)
-    setUpdater(updater+1)
+    props.setUpdater(props.updater+1)
   }
 
   function imageClickHandler(img) {
     winLoseHandle(img)
     shuffleState()
+    props.setGameStarted(true)
     props.handleTimer()
+    console.log(props.gameStarted)
   }
 
   return (

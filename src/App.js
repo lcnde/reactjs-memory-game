@@ -25,23 +25,35 @@ function App() {
   ])
   const [timer, setTimer] = useState(5)
   const [originalTimer, setOriginalTimer] = useState(timer)
+  const [gameStarted, setGameStarted] = useState(false)
+  const [updater, setUpdater] = useState(1)
 
+let helper
 
   function resetGame() {
-    setTimer(originalTimer)
     for (var i=0; i < cars.length; i++) {
       cars[i].clicked = false
+    };
+    setGameStarted(false);
+    resetTimer()
+  }
+  function resetTimer() {
+    var highestTimeout = setInterval(";")
+    for (var i=0; i<highestTimeout; i++) {
+      clearInterval(i);
     }
+    setTimer(originalTimer);
   }
 
   const handleTimer = () => {
-    let helper = timer
+    resetTimer();
+    helper = originalTimer
     var timerInterval = setInterval(() => {
       helper -= 1
       setTimer(helper)
-      console.log(timer)
+      console.log(helper)
       if (helper === 0) {
-        alert('You have lost')
+        alert('Time is up! You have lost')
         resetGame()
         clearInterval(timerInterval)
       }
@@ -58,6 +70,10 @@ function App() {
         cars={cars} 
         setCars={setCars}
         handleTimer={handleTimer}
+        gameStarted={gameStarted}
+        setGameStarted={setGameStarted}
+        updater={updater}
+        setUpdater={setUpdater}
       />
     </div>
   );
